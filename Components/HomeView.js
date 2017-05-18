@@ -28,12 +28,6 @@ import MarksSheetView from './MarksSheetView';
 import MarksView from './MarksView';
 import HomeWorksView from './HomeWorksView';
 
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import { apiMiddleware, reducer } from '../redux';
-
-const store = createStore(reducer, {}, applyMiddleware(apiMiddleware));
-store.dispatch({type: 'GET_PROFILE_DATA'});
 
 BackAndroid.addEventListener('hardwareBackPress', () => {
   if (_navigator.getCurrentRoutes().length === 1  ) {
@@ -46,12 +40,11 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
 export default class HomeView extends Component {
   render() {
     return (
-    <Provider store = {store}>
+
   <Navigator
           style={{ flex:1 }}
           initialRoute={{name:'LoginView'}}
           renderScene={this.navigatorRenderScene}/>
-    </Provider>
     );
 
   }

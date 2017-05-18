@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 
 import {
   StyleSheet,
@@ -12,6 +11,7 @@ import {
   TouchableHighlight,
   BackAndroid,
   ScrollView,
+  AsyncStorage,
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
@@ -20,30 +20,25 @@ import Container from './Container';
 import Button from './Button';
 import Label from './Label';
 import ImageContainer from './ImageContainer';
+import profiles from '../data'
 
-@connect(
-  state => ({
-    profiles: state.profiles,
-  }),
-  dispatch => ({
-      refresh: () => dispatch({type: 'GET_PROFILE_DATA'}),
-    }),
-)
 
 export default class ProfileView extends Component {
+constructor(props) {
+    super(props);
+    }
+
+  componentDidMount() {
+  fetch('http://10.0.2.2:3001/v1/profiles.json').then((data) =>
+  this.setState({myData: data}))
+  }
 
 render() {
-const { profiles} = this.props;
-const {profile, profile:{name,admission_no,dob,classes,section,address,contact}}=this.props;
+    if(this.state.myData) {
     return (
+
     <ScrollView style={styles.scroll}>
-    {
-     profiles.map((profile,index)=> <ProfileView
-     profile={profile}
-     key={index}
-     />)
-     }
-        <ImageContainer>
+  <ImageContainer>
 
         <Image
                   style={{width:110,height: 110, justifyContent: 'center', alignItems: 'center',
@@ -54,50 +49,58 @@ const {profile, profile:{name,admission_no,dob,classes,section,address,contact}}
 
 <Container>
     <Text
-     style={styles.textInput}> Name : {name}
+     style={styles.textInput}> Name : {this.state.myData.profiles[0]}
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> Admission No. {admission_no}
+     style={styles.textInput}> Admission No.
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> D.O.B :  {dob}
-    </Text>
-</Container>
-
-
-<Container>
-    <Text
-     style={styles.textInput}> Class :  {classes}
-    </Text>
-</Container>
-
-<Container>
-    <Text
-     style={styles.textInput}> Section :  {section}
+     style={styles.textInput}> D.O.B :
     </Text>
 </Container>
 
 
 <Container>
     <Text
-     style={styles.textInput}> Address :   {address}
+     style={styles.textInput}> Class :
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> Contact :   {contact}
+     style={styles.textInput}> Section :
+    </Text>
+</Container>
+
+
+<Container>
+    <Text
+     style={styles.textInput}> Address :
+    </Text>
+</Container>
+
+<Container>
+    <Text
+     style={styles.textInput}> Contact :
     </Text>
 </Container>
 
         </ScrollView>
+
     );
+    }
+    else{
+    return(
+    <Container>
+    </Container>
+    );
+    }
 
   }
 

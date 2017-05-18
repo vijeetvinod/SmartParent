@@ -10,7 +10,8 @@ import {
   Navigator,
   TouchableHighlight,
   BackAndroid,
-  ScrollView
+  ScrollView,
+  AsyncStorage,
 } from 'react-native';
 
 var _navigator;
@@ -19,7 +20,6 @@ import Container from './Container';
 import Button from './Button';
 import Label from './Label';
 import ImageContainer from './ImageContainer';
-import {AsyncStorage} from 'react';
 import RegisterView from './RegisterView';
 
 
@@ -40,11 +40,38 @@ _navigate(){
   })
 
 }
-_navigate2(){
-this.props.navigator.push({
-              name: 'CheckList',
-              })
-              }
+_handleAdd = () => {
+
+      const data = {
+        username: this.state.userName,
+        password: this.state.userPass
+     }
+      // Serialize and post the data
+      const json = JSON.stringify(data)
+      fetch('http://10.0.2.2:3000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.error) {
+          alert(res.error)
+        } else {
+         this.props.navigator.push({
+             name: 'CheckList', // Matches route.name
+           })
+        }
+      })
+      .catch(() => {
+        alert('There was an error logging in.');
+      })
+      .done()
+    }
+
 
   render() {
     return (
@@ -61,21 +88,18 @@ this.props.navigator.push({
 
 <Container>
     <TextInput
-        placeholder="UserID"
+        placeholder="Username"
         style={styles.textInput}
-        onChangeText={(userName) => this.setState({userName})}
+        onChangeText={(text) => this.setState({userName:text})}
         autoCapitalize="none"
         autoCorrect={false}
         onSubmitEditing={(event) => {
-
            const{userName}=this.state.userName;
            const{onSubmitEditing}=this.props;
             if(!userName) return
             onSubmitEditing(userName)
-            this.setState({userName:''})
             this.refs.SecondInput.focus();
           }}
-        value={this.state.userName}
 
     />
 
@@ -83,9 +107,8 @@ this.props.navigator.push({
         placeholder="Password"
         ref='SecondInput'
         secureTextEntry={true}
-        onChangeText={(userPass) => this.setState({userPass})}
+        onChangeText={(text) => this.setState({userPass:text})}
         style={styles.textInput}
-        value={this.state.userPass}
     />
 </Container>
 
@@ -93,7 +116,7 @@ this.props.navigator.push({
                  <Button
                      label="Sign In"
                      styles={{button: styles.primaryButton, label: styles.buttonWhiteText}}
-                     onPress={() => this._navigate2()}
+                     onPress={() => this._handleAdd()}
                       />
              </Container>
              <Container>
@@ -142,7 +165,5 @@ primaryButton: {
 
 
 });
-
-
 
 

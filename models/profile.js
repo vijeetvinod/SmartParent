@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
-// Define movie schema
+
+// Define profile schema
 var profileSchema = new Schema({
   email: {
     type: String,

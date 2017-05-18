@@ -34,12 +34,13 @@ _handleAdd = () => {
         email: this.state.email,
         password: this.state.password,
       }
+      if((this.state.email)!=="" && (this.state.password)!=="" ){
     const json = JSON.stringify(data);
-      fetch('http://localhost:3000/users/register', {
+      fetch('http://10.0.2.2:3000/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json'
+          'Accept': 'application/json'
         },
         body: json
       })
@@ -53,6 +54,10 @@ _handleAdd = () => {
         alert('There was an error creating your account.');
       })
       .done()
+      }
+      else{
+      alert('Cannot be empty!');
+      }
 }
   render() {
     return (
@@ -67,7 +72,7 @@ _handleAdd = () => {
 
 <Container>
     <TextInput
-        placeholder="E-mail"
+        placeholder="Username"
         style={styles.textInput}
         onChangeText={(text) => this.setState({email:text})}
         autoCapitalize="none"
