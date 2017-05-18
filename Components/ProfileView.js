@@ -26,11 +26,16 @@ import profiles from '../data'
 export default class ProfileView extends Component {
 constructor(props) {
     super(props);
+
+  this.state = {
+    myData: '',
+  }
     }
 
-  componentDidMount() {
-  fetch('http://10.0.2.2:3001/v1/profiles.json').then((data) =>
-  this.setState({myData: data}))
+  async componentDidMount() {
+  let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
+  let responseJson = await response.json();
+  this.setState({ myData: responseJson });
   }
 
 render() {
@@ -49,45 +54,45 @@ render() {
 
 <Container>
     <Text
-     style={styles.textInput}> Name : {this.state.myData.profiles[0]}
+     style={styles.textInput}> Name : {this.state.myData.profiles[0].name}
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> Admission No.
+     style={styles.textInput}> Admission No: {this.state.myData.profiles[0].admission_no}
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> D.O.B :
-    </Text>
-</Container>
-
-
-<Container>
-    <Text
-     style={styles.textInput}> Class :
-    </Text>
-</Container>
-
-<Container>
-    <Text
-     style={styles.textInput}> Section :
+     style={styles.textInput}> D.O.B : {this.state.myData.profiles[0].dob}
     </Text>
 </Container>
 
 
 <Container>
     <Text
-     style={styles.textInput}> Address :
+     style={styles.textInput}> Class : {this.state.myData.profiles[0].class}
     </Text>
 </Container>
 
 <Container>
     <Text
-     style={styles.textInput}> Contact :
+     style={styles.textInput}> Section : {this.state.myData.profiles[0].section}
+    </Text>
+</Container>
+
+
+<Container>
+    <Text
+     style={styles.textInput}> Address : {this.state.myData.profiles[0].address}
+    </Text>
+</Container>
+
+<Container>
+    <Text
+     style={styles.textInput}> Contact : {this.state.myData.profiles[0].contact}
     </Text>
 </Container>
 
