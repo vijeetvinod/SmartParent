@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+    import React, { Component } from 'react';
+import moment from 'moment';
 
 import {
   StyleSheet,
@@ -32,7 +33,7 @@ constructor(props) {
   }
     }
 
-  async componentDidMount() {
+  async componentWillMount() {
   let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
   let responseJson = await response.json();
   this.setState({ myData: responseJson });
@@ -48,7 +49,7 @@ render() {
         <Image
                   style={{width:110,height: 110, justifyContent: 'center', alignItems: 'center',
                   marginBottom:20}}
-                  source={require('./profpic.png')}>
+                  source={{uri: this.state.myData.profiles[0].pic}}>
                   </Image>
          </ImageContainer>
 
@@ -66,7 +67,7 @@ render() {
 
 <Container>
     <Text
-     style={styles.textInput}> D.O.B : {this.state.myData.profiles[0].dob}
+     style={styles.textInput}> D.O.B : { moment(this.state.myData.profiles[0].dob).format("DD-MM-YYYY")}
     </Text>
 </Container>
 

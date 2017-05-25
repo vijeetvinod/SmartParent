@@ -13,8 +13,6 @@ import {
   ScrollView
 } from 'react-native';
 
-var _navigator;
-
 import Container from './Container';
 import Button from './Button';
 import Label from './Label';
@@ -30,9 +28,28 @@ constructor(props) {
   }
 
 
-_navigate(){
+_navigate1(){
   this.props.navigator.push({
-    name: 'MarksView', // Matches route.name
+    name: 'TestOneMarksView', // Matches route.name
+  })
+
+}
+_navigate2(){
+  this.props.navigator.push({
+    name: 'TestTwoMarksView', // Matches route.name
+  })
+
+}
+
+_navigate3(){
+  this.props.navigator.push({
+    name: 'ExamOneMarksView', // Matches route.name
+  })
+
+}
+_navigate4(){
+  this.props.navigator.push({
+    name: 'ExamTwoMarksView', // Matches route.name
   })
 
 }
@@ -41,43 +58,27 @@ _navigate(){
     return (
     <ScrollView style={styles.scroll}>
              <Container>
-             <TouchableHighlight onPress={ () => this._navigate()}
+             <TouchableHighlight onPress={ () => this._navigate1()}
               underlayColor= 'transparent'>
                  <Text style ={styles.buttonBlackText}> Test 1 </Text>
              </TouchableHighlight>
              </Container>
              <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
+                          <TouchableHighlight onPress={ () => this._navigate2()}
                            underlayColor= 'transparent'>
                               <Text style ={styles.buttonBlackText}> Test 2 </Text>
                           </TouchableHighlight>
                           </Container>
+
              <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
-                           underlayColor= 'transparent'>
-                              <Text style ={styles.buttonBlackText}> Test 3 </Text>
-                          </TouchableHighlight>
-                          </Container>
-             <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
-                           underlayColor= 'transparent'>
-                              <Text style ={styles.buttonBlackText}> Test 4 </Text>
-                          </TouchableHighlight>
-                          </Container>
-             <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
+                          <TouchableHighlight onPress={ () => this._navigate3()}
                            underlayColor= 'transparent'>
                               <Text style ={styles.buttonBlackText}> Mid Exam </Text>
                           </TouchableHighlight>
                           </Container>
-             <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
-                           underlayColor= 'transparent'>
-                              <Text style ={styles.buttonBlackText}> Prep Exam </Text>
-                          </TouchableHighlight>
-                          </Container>
+
             <Container>
-                         <TouchableHighlight onPress={ () => this._navigate()}
+                         <TouchableHighlight onPress={ () => this._navigate4()}
                           underlayColor= 'transparent'>
                              <Text style ={styles.buttonBlackText}> Final exam </Text>
                          </TouchableHighlight>

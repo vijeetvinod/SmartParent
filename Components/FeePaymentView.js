@@ -10,8 +10,8 @@ import {
   Navigator,
   TouchableHighlight,
   BackAndroid,
+  ScrollView,
   AsyncStorage,
-  ScrollView
 } from 'react-native';
 
 
@@ -23,19 +23,19 @@ import ImageContainer from './ImageContainer';
 
 
 
-export default class HomeWorksView extends Component {
+export default class FeePaymentView extends Component {
 constructor(props) {
     super(props);
     this.state = {
         myData: '',
       }
-
   }
   async componentWillMount() {
     let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
     let responseJson = await response.json();
     this.setState({ myData: responseJson });
     }
+
 
 render() {
 if(this.state.myData) {
@@ -44,51 +44,49 @@ if(this.state.myData) {
 
 <Container>
     <Text
-     style={styles.textInput}> Yesterday
+     style={styles.textInput}> Total fees:
     </Text>
 </Container>
 
-<Container>
-    <Text>
-
-    </Text>
- </Container>
 <Container>
     <Text style={styles.textInput}>
-{this.state.myData.profiles[0].home_yday}
-    </Text>
-    </Container>
-<Container>
-    <Text>
-
-    </Text>
-    </Container>
-<Container>
-    <Text>
+    {this.state.myData.profiles[0].fee_tot}
     </Text>
 </Container>
+
 <Container>
     <Text
-     style={styles.textInput}> Today
+     style={styles.textInput}> Fees Paid:
     </Text>
 </Container>
 <Container>
+     <Text style={styles.textInput}>
+        {this.state.myData.profiles[0].fee_paid}
+        </Text>
+</Container>
+
+<Container>
+     <Text style={styles.textInput}> Balance fees :
+
+        </Text>
+</Container>
+<Container>
     <Text style={styles.textInput}>
-{this.state.myData.profiles[0].home_tdy}
+ {this.state.myData.profiles[0].fee_bal}
     </Text>
 </Container>
+
 
         </ScrollView>
 
     );
     }
-    else{
-        return(
-        <Container>
-        </Container>
-        );
-        }
-
+else{
+    return(
+    <Container>
+    </Container>
+    );
+    }
   }
 
 }

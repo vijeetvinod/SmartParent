@@ -10,7 +10,8 @@ import {
   Navigator,
   TouchableHighlight,
   BackAndroid,
-  ScrollView
+  ScrollView,
+  AsyncStorage,
 } from 'react-native';
 
 
@@ -25,9 +26,19 @@ import ImageContainer from './ImageContainer';
 export default class AttendanceView extends Component {
 constructor(props) {
     super(props);
+    this.state = {
+        myData: '',
+      }
   }
+  async componentWillMount() {
+    let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
+    let responseJson = await response.json();
+    this.setState({ myData: responseJson });
+    }
+
 
 render() {
+if(this.state.myData) {
     return (
     <ScrollView style={styles.scroll}>
 
@@ -38,8 +49,8 @@ render() {
 </Container>
 
 <Container>
-    <Text>
-
+    <Text style={styles.textInput}>
+    {this.state.myData.profiles[0].classes_tot}
     </Text>
 </Container>
 
@@ -49,19 +60,19 @@ render() {
     </Text>
 </Container>
 <Container>
-    <Text>
-
-    </Text>
+     <Text style={styles.textInput}>
+        {this.state.myData.profiles[0].classes_att}
+        </Text>
 </Container>
 
 <Container>
-    <Text
-     style={styles.textInput}> Attendance % :
-    </Text>
+     <Text style={styles.textInput}> Attendance Percentage
+
+        </Text>
 </Container>
 <Container>
-    <Text>
-
+    <Text style={styles.textInput}>
+ {this.state.myData.profiles[0].classes_perc}
     </Text>
 </Container>
 
@@ -72,10 +83,22 @@ render() {
     </Text>
 </Container>
 
+<Container>
+     <Text style={styles.textInput}>
+        {this.state.myData.profiles[0].remarks}
+        </Text>
+</Container>
+
         </ScrollView>
 
     );
-
+    }
+else{
+    return(
+    <Container>
+    </Container>
+    );
+    }
   }
 
 }

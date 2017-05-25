@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Linking,
   Image,
   TextInput,
   Alert,
@@ -54,6 +55,16 @@ this.props.navigator.push({
               name: 'HomeWorksView',
               })
               }
+_navigate5(){
+this.props.navigator.push({
+              name: 'FeePaymentView',
+              })
+              }
+ _navigate6(){
+ this.props.navigator.push({
+               name: 'NotesView',
+               })
+               }
   render() {
     return (
     <ScrollView style={styles.scroll}>
@@ -88,13 +99,13 @@ this.props.navigator.push({
                           </TouchableHighlight>
                           </Container>
              <Container>
-                          <TouchableHighlight onPress={ () => this._navigate()}
+                          <TouchableHighlight onPress={ () => this._navigate5()}
                            underlayColor= 'transparent'>
-                              <Text style ={styles.buttonBlackText}> Fee Payment </Text>
+                              <Text style ={styles.buttonBlackText}> Fee Status </Text>
                           </TouchableHighlight>
                           </Container>
             <Container>
-                         <TouchableHighlight onPress={ () => this._navigate()}
+                         <TouchableHighlight onPress={ () => this._navigate6()}
                           underlayColor= 'transparent'>
                              <Text style ={styles.buttonBlackText}> Notes </Text>
                          </TouchableHighlight>

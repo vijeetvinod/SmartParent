@@ -25,8 +25,13 @@ import CheckList from './CheckList';
 import ProfileView from './ProfileView';
 import AttendanceView from './AttendanceView';
 import MarksSheetView from './MarksSheetView';
-import MarksView from './MarksView';
 import HomeWorksView from './HomeWorksView';
+import TestOneMarksView from './TestOneMarksView';
+import TestTwoMarksView from './TestTwoMarksView';
+import ExamOneMarksView from './ExamOneMarksView';
+import ExamTwoMarksView from './ExamTwoMarksView';
+import FeePaymentView from './FeePaymentView';
+import NotesView from './NotesView';
 
 
 BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -63,10 +68,20 @@ navigatorRenderScene(route, navigator) {
                 return (<AttendanceView navigator={navigator} title="AttendanceView"/>);
       case 'MarksSheetView' :
                  return (<MarksSheetView navigator={navigator} title="MarksSheetView"/>);
-       case 'MarksView' :
-                       return (<MarksView navigator={navigator} title="MarksView"/>);
       case 'HomeWorksView' :
                        return (<HomeWorksView navigator={navigator} title="HomeWorksView"/>);
+case 'TestOneMarksView' :
+                       return (<TestOneMarksView navigator={navigator} title="TestOneMarksView"/>);
+case 'TestTwoMarksView' :
+                       return (<TestTwoMarksView navigator={navigator} title="TestTwoMarksView"/>);
+case 'ExamOneMarksView' :
+                       return (<ExamOneMarksView navigator={navigator} title="ExamOneMarksView"/>);
+case 'ExamTwoMarksView' :
+                       return (<ExamTwoMarksView navigator={navigator} title="ExamTwoMarksView"/>);
+case 'FeePaymentView' :
+                       return (<FeePaymentView navigator={navigator} title="FeePaymentView"/>);
+case 'NotesView' :
+                       return (<NotesView navigator={navigator} title="NotesView"/>);
     }
   }
 }

@@ -23,7 +23,7 @@ import ImageContainer from './ImageContainer';
 
 
 
-export default class examTwoMarksView extends Component {
+export default class ExamTwoMarksView extends Component {
 constructor(props) {
     super(props);
      this.state = {
@@ -43,7 +43,7 @@ if(this.state.myData) {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 1 : {this.state.myData.profiles[0].e2_s1}
+     style={styles.textInput}> Subject 1 :      {this.state.myData.profiles[0].e2_s1}
     </Text>
 </Container>
 
@@ -55,7 +55,7 @@ if(this.state.myData) {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 2:  {this.state.myData.profiles[0].e2_s2}
+     style={styles.textInput}> Subject 2:       {this.state.myData.profiles[0].e2_s2}
     </Text>
 </Container>
 <Container>
@@ -66,7 +66,7 @@ if(this.state.myData) {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 3 :{this.state.myData.profiles[0].e2_s3}
+     style={styles.textInput}> Subject 3 :      {this.state.myData.profiles[0].e2_s3}
     </Text>
 </Container>
 <Container>
@@ -78,7 +78,7 @@ if(this.state.myData) {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 4 : {this.state.myData.profiles[0].e2_s4}
+     style={styles.textInput}> Subject 4 :      {this.state.myData.profiles[0].e2_s4}
     </Text>
 </Container>
 
@@ -89,7 +89,7 @@ if(this.state.myData) {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Subject 5 : {this.state.myData.profiles[0].e2_s5}
+     style={styles.textInput}> Subject 5 :      {this.state.myData.profiles[0].e2_s5}
     </Text>
 </Container>
 <Container>
@@ -99,7 +99,7 @@ if(this.state.myData) {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Subject 6 : {this.state.myData.profiles[0].e2_s6}
+     style={styles.textInput}> Subject 6 :      {this.state.myData.profiles[0].e2_s6}
     </Text>
 </Container>
 <Container>
@@ -109,12 +109,12 @@ if(this.state.myData) {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Total: {this.state.myData.profiles[0].e2_tot}
+     style={styles.textInput}> Total:       {this.state.myData.profiles[0].e2_tot}
     </Text>
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Percentage : {this.state.myData.profiles[0].e2_perc}
+     style={styles.textInput}> Percentage :     {this.state.myData.profiles[0].e2_perc}
     </Text>
 </Container>
 
