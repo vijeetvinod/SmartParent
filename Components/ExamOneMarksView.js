@@ -10,6 +10,7 @@ import {
   Navigator,
   TouchableHighlight,
   BackAndroid,
+  AsyncStorage,
   ScrollView
 } from 'react-native';
 
@@ -22,18 +23,27 @@ import ImageContainer from './ImageContainer';
 
 
 
-export default class MarksView extends Component {
+export default class examOneMarksView extends Component {
 constructor(props) {
     super(props);
+     this.state = {
+            myData: '',
+          }
   }
+  async componentWillMount() {
+      let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
+      let responseJson = await response.json();
+      this.setState({ myData: responseJson });
+      }
 
 render() {
+if(this.state.myData) {
     return (
     <ScrollView style={styles.scroll}>
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 1 :
+     style={styles.textInput}> Subject 1 : {this.state.myData.profiles[0].e1_s1}
     </Text>
 </Container>
 
@@ -45,7 +55,7 @@ render() {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 2:
+     style={styles.textInput}> Subject 2:  {this.state.myData.profiles[0].e1_s2}
     </Text>
 </Container>
 <Container>
@@ -56,7 +66,7 @@ render() {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 3 :
+     style={styles.textInput}> Subject 3 :{this.state.myData.profiles[0].e1_s3}
     </Text>
 </Container>
 <Container>
@@ -68,7 +78,7 @@ render() {
 
 <Container>
     <Text
-     style={styles.textInput}> Subject 4 :
+     style={styles.textInput}> Subject 4 : {this.state.myData.profiles[0].e1_s4}
     </Text>
 </Container>
 
@@ -79,7 +89,7 @@ render() {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Subject 5 :
+     style={styles.textInput}> Subject 5 : {this.state.myData.profiles[0].e1_s5}
     </Text>
 </Container>
 <Container>
@@ -89,7 +99,7 @@ render() {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Subject 6 :
+     style={styles.textInput}> Subject 6 : {this.state.myData.profiles[0].e1_s6}
     </Text>
 </Container>
 <Container>
@@ -99,12 +109,12 @@ render() {
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Total:
+     style={styles.textInput}> Total: {this.state.myData.profiles[0].e1_tot}
     </Text>
 </Container>
 <Container>
     <Text
-     style={styles.textInput}> Percentage :
+     style={styles.textInput}> Percentage : {this.state.myData.profiles[0].e1_perc}
     </Text>
 </Container>
 
@@ -113,6 +123,13 @@ render() {
         </ScrollView>
 
     );
+    }
+    else{
+        return(
+        <Container>
+        </Container>
+        );
+        }
 
   }
 

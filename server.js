@@ -5,7 +5,8 @@ import router from './router';
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/profiles');
+mongoose.connect('mongodb://localhost/profiles);
+
 
 // Initialize http server
 const app = express();
