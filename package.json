@@ -14,8 +14,9 @@
     "moment": "^2.18.1",
     "mongoose": "^4.9.9",
     "morgan": "^1.8.1",
-    "react": "15.4.2",
-    "react-native": "0.41.2"
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.43.1",
+    "react-navigation": "^1.0.0-beta.11"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -25,11 +26,10 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react-native": "1.9.1",
     "babel-preset-stage-0": "^6.24.1",
-    "concurrently": "^3.4.0",
     "enzyme": "^2.8.2",
     "jest": "19.0.2",
     "nodemon": "^1.11.0",
-    "react-test-renderer": "15.4.2"
+    "react-test-renderer": "^15.5.4"
   },
   "jest": {
     "preset": "react-native"

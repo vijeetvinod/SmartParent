@@ -20,8 +20,8 @@ constructor(props) {
     super(props)
     this.state = {
         email: '',
-        password: ''
-
+        password: '',
+        admissionNo:'',
       }
   }
 
@@ -29,12 +29,12 @@ constructor(props) {
 
 _handleAdd = () => {
 
-
+if((this.state.email)!=="" && (this.state.password)!=="" ){
       const data = {
         email: this.state.email,
         password: this.state.password,
       }
-      if((this.state.email)!=="" && (this.state.password)!=="" ){
+
     const json = JSON.stringify(data);
       fetch('http://10.0.2.2:3000/users/register', {
         method: 'POST',
@@ -71,9 +71,25 @@ _handleAdd = () => {
          </ImageContainer>
 
 <Container>
+<TextInput
+        placeholder="Admission No."
+        style={styles.textInput}
+        onChangeText={(text) => this.setState({admissionNo:text})}
+        autoCapitalize="none"
+        autoCorrect={false}
+        onSubmitEditing={(event) => {
+           const{admissionNo}=this.state.admissionNo;
+           const{onSubmitEditing}=this.props;
+            if(!admissionNo) return
+            onSubmitEditing(admissionNo)
+            this.refs.SecondInput.focus();
+          }}
+
+    />
+
     <TextInput
         placeholder="Username"
-        style={styles.textInput}
+        style={styles.textInputUsername}
         onChangeText={(text) => this.setState({email:text})}
         autoCapitalize="none"
         autoCorrect={false}
@@ -93,7 +109,7 @@ _handleAdd = () => {
         ref='SecondInput'
         secureTextEntry={true}
         onChangeText={(text) => this.setState({password:text})}
-        style={styles.textInput}
+        style={styles.textInputPass}
 
     />
 </Container>
@@ -130,10 +146,26 @@ buttonBlackText: {
     fontSize: 20,
     color: '#595856'
 },
+
+
 textInput: {
     fontSize: 20,
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
+    marginBottom: 20,
+    marginTop: 20
 },
+textInputUsername: {
+    fontSize: 20,
+    backgroundColor: '#FFF',
+    marginBottom: 20,
+},
+
+textInputPass: {
+    fontSize: 20,
+    backgroundColor: '#FFF',
+    marginBottom: 20,
+},
+
 primaryButton: {
     backgroundColor: '#34A853'
 },

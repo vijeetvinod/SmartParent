@@ -21,7 +21,6 @@ import Container from './Container';
 import Button from './Button';
 import Label from './Label';
 import ImageContainer from './ImageContainer';
-import profiles from '../data'
 
 
 export default class ProfileView extends Component {
@@ -33,7 +32,7 @@ constructor(props) {
   }
     }
 
-  async componentWillMount() {
+  async componentDidMount() {
   let response = await fetch('http://10.0.2.2:3001/v1/profiles.json');
   let responseJson = await response.json();
   this.setState({ myData: responseJson });

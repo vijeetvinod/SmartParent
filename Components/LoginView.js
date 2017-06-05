@@ -42,6 +42,7 @@ _navigate(){
 }
 _handleAdd = () => {
 
+if((this.state.userName)!=="" && (this.state.userPass)!=="" ){
       const data = {
         username: this.state.userName,
         password: this.state.userPass
@@ -71,12 +72,15 @@ _handleAdd = () => {
       })
       .done()
     }
+    else{
+          alert('Cannot be empty!');
+          }
+    }
 
 
   render() {
     return (
     <ScrollView style={styles.scroll}>
-
 
         <ImageContainer>
 
@@ -108,7 +112,7 @@ _handleAdd = () => {
         ref='SecondInput'
         secureTextEntry={true}
         onChangeText={(text) => this.setState({userPass:text})}
-        style={styles.textInput}
+        style={styles.textInputPass}
     />
 </Container>
 
@@ -157,7 +161,15 @@ buttonBlackText: {
 
 textInput: {
     fontSize: 20,
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
+    marginBottom: 20,
+    marginTop: 20
+},
+
+textInputPass: {
+    fontSize: 20,
+    backgroundColor: '#FFF',
+    marginBottom: 20,
 },
 primaryButton: {
     backgroundColor: '#34A853'
